@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Home.css'
 import Card from './Card'
 import {Link} from 'react-router-dom'
+import axios from 'axios';
+import { useFlashMessage } from '../../context/FlashMessageContext';
 
 function Home() {
+  const {showFlashMessage} = useFlashMessage();
+  const [featuredJobs, setFeaturedJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+    const fetchFeaturedJobs = async () => {
+      try{
+        const response = await axios.get('/api/jobs/featured');
+        setFeaturedJobs(response.data[0].postedJobs);
+        setLoading(false);
+      } catch (error){
+        console.error(error);
+        showFlashMessage('Some error in fetching featured jobs', 'error');
+        setLoading(false);
+      }
+    }
+    fetchFeaturedJobs();
+  },[])
 
   const cardData = [
     {
@@ -68,6 +88,26 @@ function Home() {
           ))}
         </div>
       </div><br /><br />
+
+      <h1 className='home-heading'>Featured Jobs</h1>
+      <div className='featuredDiv'>
+        {featuredJobs.map((job) => (
+          <div key={job._id} className="job-card">
+            <div className="job-info">
+              <div className="job-details">
+                <h2>{job.title}</h2><br />
+                <p><strong className='strong'>Location :</strong>&nbsp;&nbsp; {job.location}</p>
+              </div>
+              <div className="job-requirements">
+                <p><strong className='strong'>Experience :</strong>&nbsp;&nbsp; {job.experience}</p><br />
+                <p><strong className='strong'>Salary :</strong>&nbsp;&nbsp; {job.salary} </p><br />
+                <button onClick={() => showJob(job._id)} className="job-link">View Job</button>
+              </div> 
+            </div>
+          </div>
+        ))}
+      </div><br /><br /><br />
+      
 
       <h1 className="home-heading">Join a Thriving Community</h1>
       <div className="statistics">

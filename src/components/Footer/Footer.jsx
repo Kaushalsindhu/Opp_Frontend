@@ -16,10 +16,8 @@ function Footer() {
             <div className='footer-section links'>
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Jobs</a></li>
-                    <li><a href="#">Companies</a></li>
-                    <li><a href="#">Employers</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/jobs/all">Jobs</a></li>
                 </ul>
             </div>
             <div className='footer-section social'>

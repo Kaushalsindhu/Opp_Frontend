@@ -33,7 +33,7 @@ function PostJob() {
     try {
       if(user){
         const response = await axios.post('/api/jobs/new', jobData);
-        showFlashMessage('New Job created!', 'success');
+        showFlashMessage(response.data.message, response.data.type);
         setJobData({
           title: '',
           description: '',

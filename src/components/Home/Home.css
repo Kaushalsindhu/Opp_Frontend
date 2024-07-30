@@ -115,6 +115,12 @@
     background-color: #ededed;
     box-shadow: 0 0 15px black;
 }
+
+.featuredDiv{
+    width: 100%;
+    color: #28518A;
+}
+
 @keyframes moveUpDown {
     0% {
       transform: translateY(0); /* Start at the original position */
