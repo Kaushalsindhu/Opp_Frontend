@@ -11,7 +11,7 @@
         "source": "/api/(.*)",
         "destination": "https://opp-backend.onrender.com/api/$1"
       }
-    ],
-    "cleanUrls": true
+    ]
+    
 }
   
