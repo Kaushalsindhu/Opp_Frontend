@@ -4,11 +4,13 @@ import Card from './Card'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 import { useFlashMessage } from '../../context/FlashMessageContext';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const {showFlashMessage} = useFlashMessage();
   const [featuredJobs, setFeaturedJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(()=>{
     const fetchFeaturedJobs = async () => {
@@ -46,6 +48,10 @@ function Home() {
       imageUrl: '/assets/profile6.jpg'
     }
   ];
+
+  const showJob = (jobId)=>{
+    navigate(`/jobs/${jobId}`)
+  }
 
   return (
     <div className='homePage'>
