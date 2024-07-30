@@ -3,7 +3,7 @@
     "rewrites": [
       {
         "source": "/api/(.*)",
-        "destination": "https://api.yourdomain.com/$1"
+        "destination": "https://api.opp-backend.onrender.com/$1"
       }
     ]
 }
